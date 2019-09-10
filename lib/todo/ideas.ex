@@ -53,6 +53,7 @@ defmodule Todo.Ideas do
     %Idea{}
     |> Idea.changeset(attrs)
     |> Repo.insert()
+    |> broadcast_change([:todo, :created])
   end
 
   @doc """
@@ -71,6 +72,7 @@ defmodule Todo.Ideas do
     idea
     |> Idea.changeset(attrs)
     |> Repo.update()
+    |> broadcast_change([:todo, :updated])
   end
 
   @doc """
@@ -86,7 +88,9 @@ defmodule Todo.Ideas do
 
   """
   def delete_idea(%Idea{} = idea) do
-    Repo.delete(idea)
+    idea
+    |> Repo.delete()
+    |> broadcast_change([:todo, :deleted])
   end
 
   @doc """
@@ -100,5 +104,15 @@ defmodule Todo.Ideas do
   """
   def change_idea(%Idea{} = idea) do
     Idea.changeset(idea, %{})
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Todo.PubSub, inspect(__MODULE__))
+  end
+
+  defp broadcast_change({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(Todos.PubSub, @topic, {__MODULE__, event, result})
+
+    {:ok, result}
   end
 end

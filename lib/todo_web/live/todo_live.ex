@@ -4,6 +4,7 @@ defmodule TodoWeb.TodoLive do
   alias TodoWeb.TodoView
 
   def(mount(_session, socket)) do
+    Ideas.subscribe()
     {:ok, get(socket)}
   end
 
@@ -14,6 +15,10 @@ defmodule TodoWeb.TodoLive do
   def handle_event("add", %{"todo" => todo}, socket) do
     Ideas.create_idea(todo)
 
+    {:noreply, get(socket)}
+  end
+
+  def handle_info({Ideas, [:todo | _], _}, socket) do
     {:noreply, get(socket)}
   end
 

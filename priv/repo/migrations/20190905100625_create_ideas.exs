@@ -7,6 +7,5 @@ defmodule Todo.Repo.Migrations.CreateIdeas do
 
       timestamps()
     end
-
   end
 end
