@@ -1,0 +1,26 @@
+<form action="#" phx-submit="add">
+  <%= text_input :todo, :title, placeholder: "Tell us you idea and we will save it for you" %>
+  <%= submit "Add", phx_disable_with: "Adding..." %>
+</form>
+<table>
+	<thead><b>To do</b></thead>
+  <tr>
+  	<th> Title </th>
+  	<th> Day</th>
+  	<th> Time</th>
+  </tr>
+  <tbody>
+  		<%= for todo <- @todos do %>
+  		  	<tr>
+
+  	  <td><%= todo.title %></td>
+      <td><%= date(todo.inserted_at()) %></td> 
+      <td><%= time(todo.inserted_at()) %></td> 
+      <td>
+  	<tr>
+
+  <% end %>
+
+  </tbody>
+</table>
+
