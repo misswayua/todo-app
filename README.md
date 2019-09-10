@@ -18,3 +18,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+  
+  ## ElixirKenya Webinars
+  Check on the [ElixirKenya Webinar](https://www.youtube.com/watch?v=BupvKWMNt6A) and [presentation](https://docs.google.com/presentation/d/1dAEeBDK2znzkrLKZxZ9dhhG6-R0kccHX1f-uCNq9lFY/edit?usp=sharing) 
