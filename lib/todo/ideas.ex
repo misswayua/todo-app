@@ -8,6 +8,8 @@ defmodule Todo.Ideas do
 
   alias Todo.Ideas.Idea
 
+  @topic "ideas"
+
   @doc """
   Returns the list of ideas.
 
@@ -111,7 +113,7 @@ defmodule Todo.Ideas do
   end
 
   defp broadcast_change({:ok, result}, event) do
-    Phoenix.PubSub.broadcast(Todos.PubSub, @topic, {__MODULE__, event, result})
+    # Phoenix.PubSub.broadcast(Todos.PubSub, @topic, {__MODULE__, event, result})
 
     {:ok, result}
   end

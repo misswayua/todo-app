@@ -5,15 +5,20 @@ defmodule Todo.Application do
 
   use Application
 
+  @impl true
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
+      TodoWeb.Telemetry,
       Todo.Repo,
-      # Start the endpoint when the application starts
-      TodoWeb.Endpoint
-      # Starts a worker by calling: Todo.Worker.start_link(arg)
+      {DNSCluster, query: Application.get_env(:todo, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: Todo.PubSub},
+      # Start the Finch HTTP client for sending emails
+      {Finch, name: Todo.Finch},
+      # Start a worker by calling: Todo.Worker.start_link(arg)
       # {Todo.Worker, arg},
+      # Start to serve requests, typically the last entry
+      TodoWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -24,6 +29,7 @@ defmodule Todo.Application do
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
+  @impl true
   def config_change(changed, _new, removed) do
     TodoWeb.Endpoint.config_change(changed, removed)
     :ok
