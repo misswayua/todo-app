@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :sample_app, Todo.Repo,
+config :todo, Todo.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "sample_app_dev",
+  database: "todo_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -25,8 +25,8 @@ config :todo, TodoWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "5sktcA3/sp1Ty7osW5vD6DywnpFKPRDLh/MVw07QTapOJ4HgCw9SbckL8jbBz4Bu",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:sample_app, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:sample_app, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:todo, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:todo, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -58,12 +58,12 @@ config :todo, TodoWeb.Endpoint,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/sample_app_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/todo_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :sample_app, dev_routes: true
+config :todo, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

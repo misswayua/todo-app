@@ -24,7 +24,7 @@ config :todo, TodoWeb.Endpoint,
 config :logger, level: :warn
 
 # In test we don't send emails
-config :sample_app, SampleApp.Mailer, adapter: Swoosh.Adapters.Test
+config :todo, Todo.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false

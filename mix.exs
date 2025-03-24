@@ -74,10 +74,10 @@ defmodule Todo.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind sample_app", "esbuild sample_app"],
+      "assets.build": ["tailwind todo", "esbuild todo"],
       "assets.deploy": [
-        "tailwind sample_app --minify",
-        "esbuild sample_app --minify",
+        "tailwind todo --minify",
+        "esbuild todo --minify",
         "phx.digest"
       ]
     ]

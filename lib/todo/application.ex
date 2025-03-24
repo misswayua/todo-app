@@ -11,12 +11,12 @@ defmodule Todo.Application do
     children = [
       TodoWeb.Telemetry,
       Todo.Repo,
-      {DNSCluster, query: Application.get_env(:todo_app, :dns_cluster_query) || :ignore},
+      {DNSCluster, query: Application.get_env(:todo, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Todo.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Todo.Finch},
-      # Start a worker by calling: SampleApp.Worker.start_link(arg)
-      # {SampleApp.Worker, arg},
+      # Start a worker by calling: Todo.Worker.start_link(arg)
+      # {Todo.Worker, arg},
       # Start to serve requests, typically the last entry
       TodoWeb.Endpoint
     ]

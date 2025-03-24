@@ -39,9 +39,9 @@ defmodule TodoWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: SampleAppWeb.Layouts]
+        layouts: [html: TodoWeb.Layouts]
 
-      use Gettext, backend: SampleAppWeb.Gettext
+      use Gettext, backend: TodoWeb.Gettext
 
       import Plug.Conn
 
@@ -52,7 +52,7 @@ defmodule TodoWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {SampleAppWeb.Layouts, :app}
+        layout: {TodoWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -82,12 +82,12 @@ defmodule TodoWeb do
   defp html_helpers do
     quote do
       # Translation
-      use Gettext, backend: SampleAppWeb.Gettext
+      use Gettext, backend: TodoWeb.Gettext
 
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components
-      import SampleAppWeb.CoreComponents
+      import TodoWeb.CoreComponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -100,9 +100,9 @@ defmodule TodoWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: SampleAppWeb.Endpoint,
-        router: SampleAppWeb.Router,
-        statics: SampleAppWeb.static_paths()
+        endpoint: TodoWeb.Endpoint,
+        router: TodoWeb.Router,
+        statics: TodoWeb.static_paths()
     end
   end
 
